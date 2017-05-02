@@ -64,23 +64,38 @@ $("#my_input").val($.i18n.prop('name'));//获取key=name的value： $.i18n.prop(
 **将资源国际化message定义成一个jQuery变量（在FreeMarker模板中），在将变量通过模板嵌入页面。这样页面就会存在一个动态引入的变量。**
 **1. 定义模板变量：**
 ```javascript
-<#macro orderDetailI18n>
+//i18n配置文件 
+//新建文件 syssetting_cn.properties和syssetting_en.properties分别如下：
+syssetting_cn.properties
+	sys.hint.timeout=请求超时
+	sys.hint.optionFail=操作失败
+	sys.hint.serviceException=服务异常
+syssetting_en.properties
+	sys.hint.timeout=Request Timeout
+	sys.hint.optionFail=Operation Failed
+	sys.hint.serviceException=Service Exception
+//新建文件i18n_message.ftl 类容如下：
+i18n_message
+<#macro i18nMessage>
     var i18n_message = {
-            serviceException : "<@spring.message code="sys.hint.serviceException"/>",// <@spring.message code="sys.hint.serviceException"/>Spring i18n 的页面书写方式
-            order_detail : "<@spring.message code="order.detail.detail"/>",
-            confirmText : "<@spring.message code="order.btn.confirmText"/>",
-            confirmNoisNotNull : "<@spring.message code="order.detail.win.confirmNoisNotNull"/>"
+            serviceException : "<@spring.message code="sys.hint.serviceException"/>",
+	    // <@spring.message code="sys.hint.serviceException"/>Spring i18n 的页面书写方式
+            optionFail : "<@spring.message code="sys.hint.optionFail"/>",
+            timeout : "<@spring.message code="sys.hint.timeout"/>"
         };
 </#macro>
+
+<#-- 在相应的页面引入freemarker宏模板 -->
+<#import "i18n_message.ftl" as i18n_message />
 ```
 **2. 页面引入模板变量：**
 ```javascript
 <#--引入定义的 i18n_message 资源数据-->
-<@order_detail_i18n_data.orderDetailI18n/>
+<@i18n_message.i18nMessage/>
 ```
 **3. 获取值：**
 ```javascript
-<#--或缺 i18n_message 定义的key为 serviceException 的值-->
+<#--获取 i18n_message 定义的key为 serviceException 的值-->
 console.info(i18n_message.serviceException);
 ```
 **4. 总结：**
