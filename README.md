@@ -1,12 +1,12 @@
 ## jQuery之前端国际化方案
 
 ## 一、jQuery之前端国际化jQuery.i18n.properties
-**1. jQuery.i18n.properties采用.properties文件对JavaScript进行国际化。jQuery.i18n.properties插件首先加载默认的资源文件(filename.properties)，然后加载针对特定语言环境的资源文件(filename_zh.properties)，这就保证了在未提供某种语言的翻译时，默认值始终有效。
-2. filename的命名方式：
-   filename.properties(默认定义)
-   filename_language.properties(自定义语言)
-   filename_language_country.properties(自定义语言加国家)
-3. 应用说明：**
+**1. jQuery.i18n.properties采用.properties文件对JavaScript进行国际化。jQuery.i18n.properties插件首先加载默认的资源文件(filename.properties)，然后加载针对特定语言环境的资源文件(filename_zh.properties)，这就保证了在未提供某种语言的翻译时，默认值始终有效。  
+2. filename的命名方式：  
+   filename.properties(默认定义)  
+   filename_language.properties(自定义语言)  
+   filename_language_country.properties(自定义语言加国家)  
+3. 应用说明：**  
 ```javascript
 //引入jQuery.i18n.properties插件：
 <script type="text/javascript" src="${basePath}/static/plugin/jqueryi18n/jquery.i18n.properties.min.js"></script>
@@ -90,12 +90,12 @@ i18n_message
 ```
 **2. 页面引入模板变量：**
 ```javascript
-<#--引入定义的 i18n_message 资源数据-->
+<#--页面引入定义的 i18n_message 资源数据-->
 <@i18n_message.i18nMessage/>
 ```
 **3. 获取值：**
 ```javascript
-<#--获取 i18n_message 定义的key为 serviceException 的值-->
+<#--页面直接获取 i18n_message 定义的key为 serviceException 的值-->
 console.info(i18n_message.serviceException);
 ```
 **4. 总结：**
