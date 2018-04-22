@@ -1,12 +1,12 @@
-## jQuery之前端国际化方案
-
-## 一、jQuery之前端国际化jQuery.i18n.properties
-**1. jQuery.i18n.properties采用.properties文件对JavaScript进行国际化。jQuery.i18n.properties插件首先加载默认的资源文件(filename.properties)，然后加载针对特定语言环境的资源文件(filename_zh.properties)，这就保证了在未提供某种语言的翻译时，默认值始终有效。  
-2. filename的命名方式：  
+### 一、jQuery.i18n.properties
+#### 1. jQuery.i18n.properties采用.properties文件对JavaScript进行国际化。
+jQuery.i18n.properties插件首先加载默认的资源文件(filename.properties)，然后加载针对特定语言环境的资源文件(filename_zh.properties)，这就保证了在未提供某种语言的翻译时，默认值始终有效。
+#### 2. filename的命名方式:
    filename.properties(默认定义)  
    filename_language.properties(自定义语言)  
    filename_language_country.properties(自定义语言加国家)  
-3. 应用说明：**  
+#### 3. 应用说明：
+
 ```javascript
 //引入jQuery.i18n.properties插件：
 <script type="text/javascript" src="${basePath}/static/plugin/jqueryi18n/jquery.i18n.properties.min.js"></script>
@@ -55,14 +55,15 @@ jQuery.i18n.properties({
 
 //使用
 $("#my_input").val($.i18n.prop('name'));//获取key=name的value： $.i18n.prop('name')
+
 ```
-**4. 总结：
-若使用的filename.properties是项目的resource目录中已定义的话，需要将相应.properties文件copy一份到项目static目录(resource目录是在Service端，受保护，Client端不能直接获取)，这样也来同一份properties文件就会存在两份。**
+#### 4. 总结：
+若使用的filename.properties是项目的resource目录中已定义的话，需要将相应.properties文件copy一份到项目static目录(resource目录是在Service端，受保护，Client端不能直接获取)，这样也来同一份properties文件就会存在两份。
 
 
-## 二、模板（Freemarker）嵌入使用
-**将资源国际化message定义成一个jQuery变量（在FreeMarker模板中），在将变量通过模板嵌入页面。这样页面就会存在一个动态引入的变量。**
-**1. 定义模板变量：**
+### 二、模板（Freemarker）嵌入使用
+将资源国际化message定义成一个jQuery变量（在FreeMarker模板中），在将变量通过模板嵌入页面。这样页面就会存在一个动态引入的变量。
+#### 1. 定义模板变量:
 ```javascript
 //i18n配置文件 
 //新建文件 syssetting_cn.properties和syssetting_en.properties分别如下：
@@ -88,15 +89,15 @@ i18n_message
 <#-- 在相应的页面引入freemarker宏模板 -->
 <#import "i18n_message.ftl" as i18n_message />
 ```
-**2. 页面引入模板变量：**
+#### 2. 页面引入模板变量：
 ```javascript
 <#--页面引入定义的 i18n_message 资源数据-->
 <@i18n_message.i18nMessage/>
 ```
-**3. 获取值：**
+#### 3. 获取值：
 ```javascript
 <#--页面直接获取 i18n_message 定义的key为 serviceException 的值-->
 console.info(i18n_message.serviceException);
 ```
-**4. 总结：**
-**filename.properties在系统中只存在唯一一份，保证了数据的唯一性。**
+#### 4. 总结：
+filename.properties在系统中只存在唯一一份，保证了数据的唯一性。
