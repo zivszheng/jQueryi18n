@@ -1,3 +1,4 @@
+## jQuery实现资源国际化
 ### 一、jQuery.i18n.properties
 #### 1. jQuery.i18n.properties采用.properties文件对JavaScript进行国际化。
 jQuery.i18n.properties插件首先加载默认的资源文件(filename.properties)，然后加载针对特定语言环境的资源文件(filename_zh.properties)，这就保证了在未提供某种语言的翻译时，默认值始终有效。
